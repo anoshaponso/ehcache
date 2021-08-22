@@ -1,0 +1,30 @@
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3
+            http://www.ehcache.org/schema/ehcache-core-3.7.xsd">
+
+    <!-- Persistent cache directory -->
+    <persistence directory="cache" />
+    <!-- In-memory cache template -->
+    <cache-template name="level1">
+        <resources>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache-template>
+
+    <!-- In-disk store cache template -->
+    <cache-template name="level2">
+        <resources>
+            <disk unit="MB">10</disk>
+        </resources>
+    </cache-template>
+
+
+    <!-- Cache configurations -->
+    <cache alias="personCache" uses-template="level1" >
+        <key-type>java.lang.Long</key-type>
+        <value-type>com.example.cache.model.Person</value-type>
+    </cache>
+
+</config>
